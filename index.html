@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator PSIM</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+        /* Navbar Start */
+        .navbar{
+            background-color: white !important;
+        }
+        form{
+            background-color: #f9f9f9;
+            width: 460px;
+            height: 48px;
+            align-items: center;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 5px;
+        }
+        form button{
+            border: 0;
+            background-color: #f9f9f9;
+            margin-top: 4px;
+        }
+        form button i{
+            font-size: 20px;
+        }
+        form input{
+            background-color: #f9f9f9 !important;
+            border: 0 !important;
+        }
+        .form-control:focus{
+            box-shadow: none;
+        }
+        .in_responsive{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+
+        /* user head */
+        .userhead_main{
+            display: flex;
+        }
+        .userpart_two{
+            padding-top: 10px;
+            padding-bottom: 20px;
+        }
+        .user_head{
+            width: 52.5%;
+            background-color: rgba(0, 152, 244, 1);
+            display: inline-block;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .user_head h2{
+            padding-top: 5px;
+        }
+        
+        
+        .user_btn{
+            display: flex;
+        }
+        .user_btn button{
+            padding-left: 30px;
+            padding-right: 26px;
+            padding-top: 14px;
+            padding-bottom: 12px;
+            background-color: #fff;
+            border: 1px solid rgba(80, 205, 137, 1);
+            color: black;
+            display: flex;
+            align-items: center;
+        }
+        .user_btn button i{
+            margin-right: 5px;
+        }
+        .user_btn button:hover{
+            border-color: rgba(80, 205, 137, 1);
+            background-color: #d5d1d1;
+            color: black;
+        }
+        .user_btn button:first-child{
+            margin-left: 19px;
+            margin-right: 15px;
+        }
+        .user_btn button:nth-child(2){
+            margin-right: 15px;
+        }
+        .user_btn button:nth-child(3){
+            margin-right: 15px;
+        }
+        
+        
+        .user_head h2{
+            font-family: Lato;
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 20px;
+            letter-spacing: 0em;
+            text-align: start;
+            color: #fff;
+            padding-left: 20px;
+        }
+
+        /* Table */
+        .table .col-12{
+            padding: 0 !important;
+        }
+        
+        th{
+            border-left: 1px solid rgba(0, 0, 0, 0.42);
+            border-top: 1px solid rgba(0, 0, 0, 0.42);
+            border-bottom: 0;
+            background-color: rgba(0, 152, 244, 1) !important;
+            color: white !important;
+            
+
+            font-family: Lato;
+font-size: 20px !important;
+font-weight: 200 !important;
+line-height: 24px !important ;
+letter-spacing: 0em !important;
+text-align: center !important;
+
+        }
+        td{
+            border-bottom: 0;
+            border-left: 1px solid rgba(0, 0, 0, 0.42);
+            text-align: center;
+            height: 70px !important;
+            align-items: center !important;
+            padding-top: 22px !important;
+        }
+        .r_border{
+            border-right: 1px solid rgba(0, 0, 0, 0.42);
+        }
+
+        /* Modal */
+        .modal-dialog{
+            max-width: 900px;
+        }
+        .modal-body{
+          padding: 20px 26px;
+        }
+
+
+
+        /* Modal Input */
+        .modal-header{
+            background-color: rgba(0, 152, 244, 1) !important;
+            color: white !important;
+        }
+        .input-group .btn{
+          border-top: 1px solid rgba(179, 179, 179, 1);
+          border-right: 1px solid rgba(179, 179, 179, 1);
+          border-bottom: 1px solid rgba(179, 179, 179, 1);
+          border-left: 1px solid rgba(179, 179, 179, 1);
+          width: 16%;
+        }
+        .input-group{
+          position: relative;
+        }
+        .input-group label:first-child{
+          display: inline-block;
+          position: absolute;
+          bottom: 35px;
+          color: rgba(147, 149, 159, 1);
+          background-color: white;
+          padding-left: 6px;
+          padding-right: 7px;
+          z-index: 99;
+          left: 18px;
+        }
+        .input-group input:nth-child(2){
+          padding: 10px 10px 10px 24px;
+          border-top-left-radius: 8px !important;
+          border-bottom-left-radius: 8px !important;
+          border-color: rgba(179, 179, 179, 1) !important;
+          
+        }
+
+        /* Style the custom checkboxes */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(145, 133, 133);
+    border-radius: 50%;
+    background-color: rgb(212, 209, 209);
+    outline: none;
+    cursor: pointer;
+}
+
+/* Style the custom checkboxes when checked */
+input[type="checkbox"]:checked {
+    background-color: rgba(56, 182, 255, 1);
+    border-color: rgba(56, 182, 255, 1);
+}
+
+/* Hide the default check icon */
+input[type="checkbox"]::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: transparent;
+}
+.check_round{
+    margin-top: 30px;
+    margin-left: 20px;
+}
+.access_group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 28px;
+}
+.access_group span:first-child{
+    font-family: Lato;
+font-size: 18px;
+font-weight: 500;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: center;
+color: rgba(119, 121, 134, 1);
+}
+.access_group span:last-child{
+    font-family: Lato;
+font-size: 16px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: center;
+color: rgba(147, 149, 159, 1)
+}
+
+/* Select Box */
+.main_box{
+    margin-top: 32px;
+    padding-left: 8px;
+}
+.unselect{
+    padding: 14px 12px 30px 14px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    border-radius: 5px;
+    width: 400px;
+}
+.selectp{
+    padding: 14px 12px 270px 14px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    border-radius: 5px;
+    width: 400px;
+}
+.arrow_picture{
+    margin-top: 100px;
+}
+
+/* CU Btn */
+.cu_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cu_btn .btn{
+   padding: 14px 50px 14px 50px;
+   background-color: white;
+   border-color: rgba(70, 66, 66, 0.42);
+   color: black;
+}
+.cu_btn .btn:hover{
+    background-color: rgba(0, 152, 244, 1);
+    border-color: rgba(0, 152, 244, 1);
+    color: white;
+}
+.cu_btn .btn:first-child{
+    margin-right: 8px;
+}
+.cu_btn .btn:last-child{
+    margin-left: 8px;
+}
+
+
+
+
+
+
+        @media screen and (max-width:992px) {
+          .in_responsive{
+          padding: auto;
+        }
+        .in_responsive_main{
+          display: flex;
+          justify-content: center;
+        }
+
+        form{
+            background-color: #f9f9f9;
+            width: 100%;
+          }
+
+          .user_btn{
+            display: flex;
+            flex-direction: column;
+            
+        }
+        .userhead_main{
+            display: flex;
+            flex-direction: column;
+        }
+        .user_head{
+            width: 100%;
+            background-color: rgba(0, 152, 244, 1);
+            display: inline-block;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5px;
+            padding-bottom: 1px;
+        }
+        .user_btn button{
+            width: 100%;
+            justify-content: center;
+        }
+        .user_btn button:first-child{
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .user_btn button:nth-child(2){
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+        .user_btn button:nth-child(3){
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 10px;
+        }
+        /* Modal Responsive */
+        .main_box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .arrow_picture{
+            margin-top: 10px;
+            transform: rotate(28deg);
+            margin-bottom: 10px;
+        }
+        .cardh_two{
+            margin-top: 20px;
+        }
+        
+        }
+
+        @media screen and (max-width:576px) {
+          .user_head{
+            display: flex;
+            flex-direction: column;
+          }
+          .modal-body {
+            padding: 4px 26px 15px 26px;
+          }
+          .unselect{
+            width: 300px;
+          }
+          .selectp{
+            width: 300px;
+          }
+        }
+        @media screen and (max-width:360px) {
+          .user_head{
+            display: flex;
+            flex-direction: column;
+          }
+          .unselect{
+            width: 300px;
+          }
+          .selectp{
+            width: 300px;
+          }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Nav Start -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img height="61" width="154" src="https://i.ibb.co/DQ2c8nr/image-3.png" alt="Brand_logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <form class="d-flex" role="search">
+            <button><i class="fa-solid fa-magnifying-glass" style="color: #868686;"></i></button>
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+        </ul>
+
+        <div class="d-flex justify-contents-center in_responsive_main">
+            <div class="in_responsive">
+                <span style="font-size: 20px; display: inline-block;">Khairul Nizam</span>
+                <span style="font-size: 14px; display: inline-block;">Administrator</span>
+            </div>
+            <div class="ms-4">
+                <img clas="img-fluid" height="50" width="50" src="https://i.ibb.co/HYSg8v2/Ellipse-36.png" alt="Ellipse">
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  </nav>
+  <!-- Nav end -->
+
+  <section class="userpart_two">
+    <div class="container">
+        <div class="userhead_main">
+            <div class="user_head">
+                <h2 class="text-start">Access Grant – Manage Access Group Grant</h2>
+            </div>
+            <div class="user_btn">
+                <button class="btn btn-primary" ><i class="fa-light fa-plus fa-xl" style="color: #707070;"></i> Reset</button>
+                <button class="btn btn-primary" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa-light fa-plus fa-xl" style="color: #707070;"></i> Create Group</button>
+                <button class="btn btn-primary" ><i class="fa-light fa-plus fa-xl" style="color: #707070;"></i> Update</button>
+                <button class="btn btn-primary" ><i class="fa-light fa-plus fa-xl" style="color: #707070;"></i> Delete</button>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                      <tr >
+                        <th>ID</th>
+                        <th>Card Access Group Name</th>
+                        <th class="r_border">Assign Card Holder</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span>1</span></td>
+                        <td><span>Access Group A</span></td>
+                        <td class="r_border"><span><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.93633 9.38889C10.6643 8.50778 11.7664 7.94444 13 7.94444C14.2336 7.94444 15.3357 8.50778 16.0637 9.38889C16.543 9.97001 16.8471 10.6754 16.9407 11.4229C17.0343 12.1703 16.9134 12.929 16.5922 13.6103C16.271 14.2916 15.7626 14.8676 15.1265 15.271C14.4903 15.6744 13.7526 15.8886 12.9993 15.8886C12.246 15.8886 11.5083 15.6744 10.8721 15.271C10.2359 14.8676 9.72759 14.2916 9.40635 13.6103C9.08512 12.929 8.96425 12.1703 9.05783 11.4229C9.15141 10.6754 9.45559 9.97001 9.93489 9.38889H9.93633ZM18.4167 11.9167C18.4167 11.0038 18.1913 10.1429 17.7927 9.38889H23.8333C24.408 9.38889 24.9591 9.61716 25.3654 10.0235C25.7717 10.4298 26 10.9809 26 11.5556V12.2778C26 14.5701 24.258 16.9173 21.2117 17.7436C20.8986 17.1812 20.4409 16.7127 19.886 16.3867C19.3311 16.0606 18.6992 15.8887 18.0556 15.8889H16.6833C17.2308 15.3823 17.6675 14.7679 17.9658 14.0842C18.2641 13.4006 18.4176 12.6626 18.4167 11.9167ZM18.0556 17.3333C18.3403 17.3326 18.6224 17.3881 18.8856 17.4967C19.1488 17.6053 19.388 17.7649 19.5893 17.9662C19.7907 18.1676 19.9502 18.4067 20.0588 18.67C20.1675 18.9332 20.223 19.2153 20.2222 19.5V20.2222C20.2222 23.0692 17.5356 26 13 26C8.46444 26 5.77778 23.0692 5.77778 20.2222V19.5C5.77702 19.2153 5.83254 18.9332 5.94115 18.67C6.04977 18.4067 6.20933 18.1676 6.41068 17.9662C6.61203 17.7649 6.85118 17.6053 7.1144 17.4967C7.37761 17.3881 7.6597 17.3326 7.94444 17.3333H18.0556ZM0 12.2778C0 14.5701 1.742 16.9173 4.78833 17.7436C5.10139 17.1812 5.55906 16.7127 6.11396 16.3867C6.66886 16.0606 7.30083 15.8887 7.94444 15.8889H9.31667C8.76917 15.3823 8.33252 14.7679 8.0342 14.0842C7.73588 13.4006 7.58237 12.6626 7.58333 11.9167C7.58333 11.0038 7.80867 10.1429 8.20878 9.38889H2.16667C1.59203 9.38889 1.04093 9.61716 0.634602 10.0235C0.228273 10.4298 0 10.9809 0 11.5556V12.2778ZM11.1944 3.97222C11.1944 2.91872 10.7759 1.90837 10.031 1.16344C9.28607 0.418501 8.27572 0 7.22222 0C6.16872 0 5.15837 0.418501 4.41344 1.16344C3.6685 1.90837 3.25 2.91872 3.25 3.97222C3.25 5.02572 3.6685 6.03607 4.41344 6.78101C5.15837 7.52594 6.16872 7.94444 7.22222 7.94444C8.27572 7.94444 9.28607 7.52594 10.031 6.78101C10.7759 6.03607 11.1944 5.02572 11.1944 3.97222ZM22.75 3.97222C22.75 2.91872 22.3315 1.90837 21.5866 1.16344C20.8416 0.418501 19.8313 0 18.7778 0C17.7243 0 16.7139 0.418501 15.969 1.16344C15.2241 1.90837 14.8056 2.91872 14.8056 3.97222C14.8056 5.02572 15.2241 6.03607 15.969 6.78101C16.7139 7.52594 17.7243 7.94444 18.7778 7.94444C19.8313 7.94444 20.8416 7.52594 21.5866 6.78101C22.3315 6.03607 22.75 5.02572 22.75 3.97222Z" fill="black" fill-opacity="0.47"/>
+                            </svg></span></td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: rgba(248, 245, 255, 1);"><span>2</span></td>
+                        <td style="background-color: rgba(248, 245, 255, 1);"><span>Access Group B</span></td>
+                        <td class="r_border" style="background-color: rgba(248, 245, 255, 1);"><span><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.93633 9.38889C10.6643 8.50778 11.7664 7.94444 13 7.94444C14.2336 7.94444 15.3357 8.50778 16.0637 9.38889C16.543 9.97001 16.8471 10.6754 16.9407 11.4229C17.0343 12.1703 16.9134 12.929 16.5922 13.6103C16.271 14.2916 15.7626 14.8676 15.1265 15.271C14.4903 15.6744 13.7526 15.8886 12.9993 15.8886C12.246 15.8886 11.5083 15.6744 10.8721 15.271C10.2359 14.8676 9.72759 14.2916 9.40635 13.6103C9.08512 12.929 8.96425 12.1703 9.05783 11.4229C9.15141 10.6754 9.45559 9.97001 9.93489 9.38889H9.93633ZM18.4167 11.9167C18.4167 11.0038 18.1913 10.1429 17.7927 9.38889H23.8333C24.408 9.38889 24.9591 9.61716 25.3654 10.0235C25.7717 10.4298 26 10.9809 26 11.5556V12.2778C26 14.5701 24.258 16.9173 21.2117 17.7436C20.8986 17.1812 20.4409 16.7127 19.886 16.3867C19.3311 16.0606 18.6992 15.8887 18.0556 15.8889H16.6833C17.2308 15.3823 17.6675 14.7679 17.9658 14.0842C18.2641 13.4006 18.4176 12.6626 18.4167 11.9167ZM18.0556 17.3333C18.3403 17.3326 18.6224 17.3881 18.8856 17.4967C19.1488 17.6053 19.388 17.7649 19.5893 17.9662C19.7907 18.1676 19.9502 18.4067 20.0588 18.67C20.1675 18.9332 20.223 19.2153 20.2222 19.5V20.2222C20.2222 23.0692 17.5356 26 13 26C8.46444 26 5.77778 23.0692 5.77778 20.2222V19.5C5.77702 19.2153 5.83254 18.9332 5.94115 18.67C6.04977 18.4067 6.20933 18.1676 6.41068 17.9662C6.61203 17.7649 6.85118 17.6053 7.1144 17.4967C7.37761 17.3881 7.6597 17.3326 7.94444 17.3333H18.0556ZM0 12.2778C0 14.5701 1.742 16.9173 4.78833 17.7436C5.10139 17.1812 5.55906 16.7127 6.11396 16.3867C6.66886 16.0606 7.30083 15.8887 7.94444 15.8889H9.31667C8.76917 15.3823 8.33252 14.7679 8.0342 14.0842C7.73588 13.4006 7.58237 12.6626 7.58333 11.9167C7.58333 11.0038 7.80867 10.1429 8.20878 9.38889H2.16667C1.59203 9.38889 1.04093 9.61716 0.634602 10.0235C0.228273 10.4298 0 10.9809 0 11.5556V12.2778ZM11.1944 3.97222C11.1944 2.91872 10.7759 1.90837 10.031 1.16344C9.28607 0.418501 8.27572 0 7.22222 0C6.16872 0 5.15837 0.418501 4.41344 1.16344C3.6685 1.90837 3.25 2.91872 3.25 3.97222C3.25 5.02572 3.6685 6.03607 4.41344 6.78101C5.15837 7.52594 6.16872 7.94444 7.22222 7.94444C8.27572 7.94444 9.28607 7.52594 10.031 6.78101C10.7759 6.03607 11.1944 5.02572 11.1944 3.97222ZM22.75 3.97222C22.75 2.91872 22.3315 1.90837 21.5866 1.16344C20.8416 0.418501 19.8313 0 18.7778 0C17.7243 0 16.7139 0.418501 15.969 1.16344C15.2241 1.90837 14.8056 2.91872 14.8056 3.97222C14.8056 5.02572 15.2241 6.03607 15.969 6.78101C16.7139 7.52594 17.7243 7.94444 18.7778 7.94444C19.8313 7.94444 20.8416 7.52594 21.5866 6.78101C22.3315 6.03607 22.75 5.02572 22.75 3.97222Z" fill="black" fill-opacity="0.47"/>
+                            </svg></span></td>
+                      </tr>
+                      <tr>
+                        <td><span>3</span></td>
+                        <td><span>Access Group C</span></td>
+                        <td class="r_border"><span><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.93633 9.38889C10.6643 8.50778 11.7664 7.94444 13 7.94444C14.2336 7.94444 15.3357 8.50778 16.0637 9.38889C16.543 9.97001 16.8471 10.6754 16.9407 11.4229C17.0343 12.1703 16.9134 12.929 16.5922 13.6103C16.271 14.2916 15.7626 14.8676 15.1265 15.271C14.4903 15.6744 13.7526 15.8886 12.9993 15.8886C12.246 15.8886 11.5083 15.6744 10.8721 15.271C10.2359 14.8676 9.72759 14.2916 9.40635 13.6103C9.08512 12.929 8.96425 12.1703 9.05783 11.4229C9.15141 10.6754 9.45559 9.97001 9.93489 9.38889H9.93633ZM18.4167 11.9167C18.4167 11.0038 18.1913 10.1429 17.7927 9.38889H23.8333C24.408 9.38889 24.9591 9.61716 25.3654 10.0235C25.7717 10.4298 26 10.9809 26 11.5556V12.2778C26 14.5701 24.258 16.9173 21.2117 17.7436C20.8986 17.1812 20.4409 16.7127 19.886 16.3867C19.3311 16.0606 18.6992 15.8887 18.0556 15.8889H16.6833C17.2308 15.3823 17.6675 14.7679 17.9658 14.0842C18.2641 13.4006 18.4176 12.6626 18.4167 11.9167ZM18.0556 17.3333C18.3403 17.3326 18.6224 17.3881 18.8856 17.4967C19.1488 17.6053 19.388 17.7649 19.5893 17.9662C19.7907 18.1676 19.9502 18.4067 20.0588 18.67C20.1675 18.9332 20.223 19.2153 20.2222 19.5V20.2222C20.2222 23.0692 17.5356 26 13 26C8.46444 26 5.77778 23.0692 5.77778 20.2222V19.5C5.77702 19.2153 5.83254 18.9332 5.94115 18.67C6.04977 18.4067 6.20933 18.1676 6.41068 17.9662C6.61203 17.7649 6.85118 17.6053 7.1144 17.4967C7.37761 17.3881 7.6597 17.3326 7.94444 17.3333H18.0556ZM0 12.2778C0 14.5701 1.742 16.9173 4.78833 17.7436C5.10139 17.1812 5.55906 16.7127 6.11396 16.3867C6.66886 16.0606 7.30083 15.8887 7.94444 15.8889H9.31667C8.76917 15.3823 8.33252 14.7679 8.0342 14.0842C7.73588 13.4006 7.58237 12.6626 7.58333 11.9167C7.58333 11.0038 7.80867 10.1429 8.20878 9.38889H2.16667C1.59203 9.38889 1.04093 9.61716 0.634602 10.0235C0.228273 10.4298 0 10.9809 0 11.5556V12.2778ZM11.1944 3.97222C11.1944 2.91872 10.7759 1.90837 10.031 1.16344C9.28607 0.418501 8.27572 0 7.22222 0C6.16872 0 5.15837 0.418501 4.41344 1.16344C3.6685 1.90837 3.25 2.91872 3.25 3.97222C3.25 5.02572 3.6685 6.03607 4.41344 6.78101C5.15837 7.52594 6.16872 7.94444 7.22222 7.94444C8.27572 7.94444 9.28607 7.52594 10.031 6.78101C10.7759 6.03607 11.1944 5.02572 11.1944 3.97222ZM22.75 3.97222C22.75 2.91872 22.3315 1.90837 21.5866 1.16344C20.8416 0.418501 19.8313 0 18.7778 0C17.7243 0 16.7139 0.418501 15.969 1.16344C15.2241 1.90837 14.8056 2.91872 14.8056 3.97222C14.8056 5.02572 15.2241 6.03607 15.969 6.78101C16.7139 7.52594 17.7243 7.94444 18.7778 7.94444C19.8313 7.94444 20.8416 7.52594 21.5866 6.78101C22.3315 6.03607 22.75 5.02572 22.75 3.97222Z" fill="black" fill-opacity="0.47"/>
+                            </svg></span></td>
+                      </tr>
+                      
+                      <tr>
+                        <td style="background-color: rgba(248, 245, 255, 1); border-bottom: 1px solid rgba(0, 0, 0, 0.42);"><span>4</span></td>
+                        <td style="background-color: rgba(248, 245, 255, 1); border-bottom: 1px solid rgba(0, 0, 0, 0.42);"><span>Access Group D</span></td>
+                        <td class="r_border" style="background-color: rgba(248, 245, 255, 1); border-bottom: 1px solid rgba(0, 0, 0, 0.42);"><span><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.93633 9.38889C10.6643 8.50778 11.7664 7.94444 13 7.94444C14.2336 7.94444 15.3357 8.50778 16.0637 9.38889C16.543 9.97001 16.8471 10.6754 16.9407 11.4229C17.0343 12.1703 16.9134 12.929 16.5922 13.6103C16.271 14.2916 15.7626 14.8676 15.1265 15.271C14.4903 15.6744 13.7526 15.8886 12.9993 15.8886C12.246 15.8886 11.5083 15.6744 10.8721 15.271C10.2359 14.8676 9.72759 14.2916 9.40635 13.6103C9.08512 12.929 8.96425 12.1703 9.05783 11.4229C9.15141 10.6754 9.45559 9.97001 9.93489 9.38889H9.93633ZM18.4167 11.9167C18.4167 11.0038 18.1913 10.1429 17.7927 9.38889H23.8333C24.408 9.38889 24.9591 9.61716 25.3654 10.0235C25.7717 10.4298 26 10.9809 26 11.5556V12.2778C26 14.5701 24.258 16.9173 21.2117 17.7436C20.8986 17.1812 20.4409 16.7127 19.886 16.3867C19.3311 16.0606 18.6992 15.8887 18.0556 15.8889H16.6833C17.2308 15.3823 17.6675 14.7679 17.9658 14.0842C18.2641 13.4006 18.4176 12.6626 18.4167 11.9167ZM18.0556 17.3333C18.3403 17.3326 18.6224 17.3881 18.8856 17.4967C19.1488 17.6053 19.388 17.7649 19.5893 17.9662C19.7907 18.1676 19.9502 18.4067 20.0588 18.67C20.1675 18.9332 20.223 19.2153 20.2222 19.5V20.2222C20.2222 23.0692 17.5356 26 13 26C8.46444 26 5.77778 23.0692 5.77778 20.2222V19.5C5.77702 19.2153 5.83254 18.9332 5.94115 18.67C6.04977 18.4067 6.20933 18.1676 6.41068 17.9662C6.61203 17.7649 6.85118 17.6053 7.1144 17.4967C7.37761 17.3881 7.6597 17.3326 7.94444 17.3333H18.0556ZM0 12.2778C0 14.5701 1.742 16.9173 4.78833 17.7436C5.10139 17.1812 5.55906 16.7127 6.11396 16.3867C6.66886 16.0606 7.30083 15.8887 7.94444 15.8889H9.31667C8.76917 15.3823 8.33252 14.7679 8.0342 14.0842C7.73588 13.4006 7.58237 12.6626 7.58333 11.9167C7.58333 11.0038 7.80867 10.1429 8.20878 9.38889H2.16667C1.59203 9.38889 1.04093 9.61716 0.634602 10.0235C0.228273 10.4298 0 10.9809 0 11.5556V12.2778ZM11.1944 3.97222C11.1944 2.91872 10.7759 1.90837 10.031 1.16344C9.28607 0.418501 8.27572 0 7.22222 0C6.16872 0 5.15837 0.418501 4.41344 1.16344C3.6685 1.90837 3.25 2.91872 3.25 3.97222C3.25 5.02572 3.6685 6.03607 4.41344 6.78101C5.15837 7.52594 6.16872 7.94444 7.22222 7.94444C8.27572 7.94444 9.28607 7.52594 10.031 6.78101C10.7759 6.03607 11.1944 5.02572 11.1944 3.97222ZM22.75 3.97222C22.75 2.91872 22.3315 1.90837 21.5866 1.16344C20.8416 0.418501 19.8313 0 18.7778 0C17.7243 0 16.7139 0.418501 15.969 1.16344C15.2241 1.90837 14.8056 2.91872 14.8056 3.97222C14.8056 5.02572 15.2241 6.03607 15.969 6.78101C16.7139 7.52594 17.7243 7.94444 18.7778 7.94444C19.8313 7.94444 20.8416 7.52594 21.5866 6.78101C22.3315 6.03607 22.75 5.02572 22.75 3.97222Z" fill="black" fill-opacity="0.47"/>
+                            </svg></span></td>
+                      </tr>
+                      
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Assign Cardholder to Access Group</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-1">
+                        <input class="check_round" type="checkbox" id="option1" value="Option 1">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group mt-3">
+                            <label for="NVRName">Cardholder Group:</label>
+                            <input type="text" placeholder="Group A" class="form-control" aria-label="Text input with dropdown button">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                            <ul class="dropdown-menu dropdown-menu-end text-center">
+                              <li><a class="dropdown-item" href="#">Group A</a></li>
+                              <li><a class="dropdown-item" href="#">Group B</a></li>
+                              <li><a class="dropdown-item" href="#">Group C</a></li>
+                              <li><a class="dropdown-item" href="#">Group D</a></li>
+                              <li><a class="dropdown-item" href="#">Group E</a></li>
+                            </ul>
+                          </div>
+                    </div>
+                    <div class="col-md-5 cardh_two">
+                        <div class="input-group mt-3">
+                            <label for="NVRName">Cardholder Name</label>
+                            <input type="text" placeholder="Group A" class="form-control" aria-label="Text input with dropdown button">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                            <ul class="dropdown-menu dropdown-menu-end text-center">
+                              <li><a class="dropdown-item" href="#">Group A</a></li>
+                              <li><a class="dropdown-item" href="#">Group B</a></li>
+                              <li><a class="dropdown-item" href="#">Group C</a></li>
+                              <li><a class="dropdown-item" href="#">Group D</a></li>
+                              <li><a class="dropdown-item" href="#">Group E</a></li>
+                            </ul>
+                          </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-1">
+                        <input class="check_round" type="checkbox" id="option1" value="Option 1">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group mt-3">
+                            <label for="NVRName">Cardholder Name</label>
+                            <input type="text" placeholder="Filter" class="form-control" aria-label="Text input with dropdown button">
+                          </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="access_group">
+                            <span>Access Group</span>
+                            <span>ACCESS GROUP A</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-1">
+                        <input class="check_round" type="checkbox" id="option1" value="Option 1">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group mt-3">
+                            <label for="NVRName">Card ID</label>
+                            <input type="text" placeholder="Filter" class="form-control" aria-label="Text input with dropdown button">
+                          </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="access_group">
+                            <span>Access Group</span>
+                            <span>Terminal 1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex main_box"> 
+                    <div class="unselect_main">
+                        <div class="unselect">
+                            <p>Abdul Rahman</p>
+                            <p>Muhamad Ridzuan</p>
+                            <p>Tommy Lee</p>
+                            <p>Jessical chew</p>
+                            <p>Ananda crishnan</p>
+                            <p>Steven Hui</p>
+                            <p>Lim Guan Yao</p>
+                        </div>
+                        <div class="text-center mt-2">Unselected Card</div>
+                    </div>
+                    <div>
+                        <svg class="arrow_picture" width="27" height="82" viewBox="0 0 27 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="27" height="82" fill="#0B2331"/>
+                            <g id="SCREEN 7" clip-path="url(#clip0_329_7703)">
+                            <rect width="1440" height="1048" transform="translate(-706 -684)" fill="white"/>
+                            <rect id="Rectangle 907" opacity="0.4" x="-704" y="-684" width="1440" height="1048" fill="#D9D9D9"/>
+                            <g id="Group 1000008213">
+                            <g id="Group 1000008212">
+                            <g id="Group 1000008169" filter="url(#filter0_d_329_7703)">
+                            <g id="Group 1000007190">
+                            <rect id="Rectangle 669" x="-458" y="-543" width="945" height="891" rx="8" fill="white"/>
+                            </g>
+                            </g>
+                            <g id="Group 1000008211">
+                            <g id="Group 1000008210">
+                            <g id="Vector" filter="url(#filter1_d_329_7703)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4 15.5836C4.00011 15.8637 4.15937 16.1376 4.45764 16.3705C4.7559 16.6034 5.17979 16.785 5.6757 16.8922C6.17162 16.9994 6.7173 17.0274 7.24376 16.9728C7.77021 16.9182 8.25382 16.7833 8.63343 16.5852L22.2053 9.50162C22.7141 9.23594 23 8.87566 23 8.5C23 8.12434 22.7141 7.76405 22.2053 7.49838L8.63343 0.414793C8.25382 0.216722 7.77021 0.0818442 7.24375 0.0272044C6.71729 -0.0274354 6.17162 0.000621701 5.6757 0.107824C5.17979 0.215027 4.7559 0.396564 4.45764 0.629486C4.15937 0.86241 4.00011 1.13626 4 1.41641L4 15.5836Z" fill="#0E1231"/>
+                            </g>
+                            <g id="Vector_2" filter="url(#filter2_d_329_7703)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M23 58.4164C22.9999 58.1363 22.8406 57.8624 22.5424 57.6295C22.2441 57.3966 21.8202 57.215 21.3243 57.1078C20.8284 57.0006 20.2827 56.9726 19.7562 57.0272C19.2298 57.0818 18.7462 57.2167 18.3666 57.4148L4.79473 64.4984C4.28587 64.7641 4 65.1243 4 65.5C4 65.8757 4.28587 66.2359 4.79473 66.5016L18.3666 73.5852C18.7462 73.7833 19.2298 73.9182 19.7562 73.9728C20.2827 74.0274 20.8284 73.9994 21.3243 73.8922C21.8202 73.785 22.2441 73.6034 22.5424 73.3705C22.8406 73.1376 22.9999 72.8637 23 72.5836L23 58.4164Z" fill="#0E1231"/>
+                            </g>
+                            </g>
+                            </g>
+                            </g>
+                            </g>
+                            </g>
+                            <defs>
+                            <filter id="filter0_d_329_7703" x="-469" y="-552" width="966" height="911" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="1"/>
+                            <feGaussianBlur stdDeviation="5"/>
+                            <feComposite in2="hardAlpha" operator="out"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_329_7703"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_329_7703" result="shape"/>
+                            </filter>
+                            <filter id="filter1_d_329_7703" x="0" y="0" width="27" height="25" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="4"/>
+                            <feGaussianBlur stdDeviation="2"/>
+                            <feComposite in2="hardAlpha" operator="out"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_329_7703"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_329_7703" result="shape"/>
+                            </filter>
+                            <filter id="filter2_d_329_7703" x="0" y="57" width="27" height="25" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="4"/>
+                            <feGaussianBlur stdDeviation="2"/>
+                            <feComposite in2="hardAlpha" operator="out"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_329_7703"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_329_7703" result="shape"/>
+                            </filter>
+                            <clipPath id="clip0_329_7703">
+                            <rect width="1440" height="1048" fill="white" transform="translate(-706 -684)"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="select_main">
+                        <div class="selectp">
+                            <p>Lincoin Bae</p>
+                        </div>
+                        <div class="text-center mt-2">Selected Card</div>
+                    </div>
+
+                </div>
+
+                
+
+                
+
+                
+              
+
+              <div class="mt-5 cu_btn">
+                <button class="btn btn-primary search_btn" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary search_btn">Update</button>
+              </div>
+              
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+  </section>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
